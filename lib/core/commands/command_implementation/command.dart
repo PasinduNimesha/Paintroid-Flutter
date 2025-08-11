@@ -11,7 +11,7 @@ abstract class Command with EquatableMixin {
   Map<String, dynamic> toJson();
 
   factory Command.fromJson(Map<String, dynamic> json) {
-    String type = json['type'] as String;
+    final type = json['type'] as String?;
     switch (type) {
       case SerializerType.PATH_COMMAND:
         return PathCommand.fromJson(json);
