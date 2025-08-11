@@ -34,10 +34,10 @@ class CommandFactory {
     Paint paint,
     double radius,
     Offset center,
-  ) =>
-      CircleShapeCommand(paint, radius, center);
+  ) => CircleShapeCommand(paint, radius, center);
 
-  SprayCommand createSprayCommand(List<Offset> points, Paint paint) {
-    return SprayCommand(points, paint);
-  }
+  SprayCommand createSprayCommand(
+    List<Offset> points,
+    Paint paint,
+  ) => SprayCommand(points, paint);
 }
