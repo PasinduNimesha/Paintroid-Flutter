@@ -13,16 +13,14 @@ class CommandFactory {
   PathCommand createPathCommand(
     PathWithActionHistory path,
     Paint paint,
-  ) =>
-      PathCommand(path, paint);
+  ) => PathCommand(path, paint);
 
   LineCommand createLineCommand(
     PathWithActionHistory path,
     Paint paint,
     Offset startPoint,
     Offset endPoint,
-  ) =>
-      LineCommand(path, paint, startPoint, endPoint);
+  ) => LineCommand(path, paint, startPoint, endPoint);
 
   SquareShapeCommand createSquareShapeCommand(
     Paint paint,
@@ -30,8 +28,7 @@ class CommandFactory {
     Offset topRight,
     Offset bottomLeft,
     Offset bottomRight,
-  ) =>
-      SquareShapeCommand(paint, topLeft, topRight, bottomLeft, bottomRight);
+  ) => SquareShapeCommand(paint, topLeft, topRight, bottomLeft, bottomRight);
 
   CircleShapeCommand createCircleShapeCommand(
     Paint paint,
