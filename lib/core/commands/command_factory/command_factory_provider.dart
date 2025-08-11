@@ -6,7 +6,5 @@ part 'command_factory_provider.g.dart';
 @Riverpod(keepAlive: true)
 class CommandFactoryProvider extends _$CommandFactoryProvider {
   @override
-  CommandFactory build() {
-    return const CommandFactory();
-  }
+  CommandFactory build() => const CommandFactory();
 }
