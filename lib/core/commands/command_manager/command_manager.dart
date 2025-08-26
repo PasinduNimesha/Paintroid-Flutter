@@ -10,7 +10,7 @@ import 'package:paintroid/core/tools/line_tool/vertex_stack.dart';
 import 'package:paintroid/core/tools/tool_data.dart';
 import 'package:paintroid/core/commands/command_implementation/graphic/spray_command.dart';
 
-enum ActionType { UNDO, REDO }
+enum ActionType { undo, redo }
 
 class CommandManager {
   CommandManager();
@@ -18,13 +18,12 @@ class CommandManager {
   final List<Command> _undoStack = [];
   final List<Command> _redoStack = [];
 
-  void addGraphicCommand(GraphicCommand command) {
-    _undoStack.add(command);
-  }
+  void addGraphicCommand(GraphicCommand command) => _undoStack.add(command);
 
   void setUndoStack(List<Command> commands) {
-    _undoStack.clear();
-    _undoStack.addAll(commands);
+    _undoStack
+      ..clear()
+      ..addAll(commands);
   }
 
   void executeLastCommand(Canvas canvas) {
@@ -48,15 +47,12 @@ class CommandManager {
   }
 
   void clearUndoStack({Iterable<Command>? newCommands}) {
-    _undoStack.clear();
-    if (newCommands != null) {
-      _undoStack.addAll(newCommands);
-    }
+    _undoStack
+      ..clear()
+      ..addAll(newCommands ?? []);
   }
 
-  void clearRedoStack() {
-    _redoStack.clear();
-  }
+  void clearRedoStack() => _redoStack.clear();
 
   void drawLineToolGhostPaths(
     Canvas canvas,
@@ -95,23 +91,20 @@ class CommandManager {
   ToolData getNextTool(ActionType actionType) {
     Command? command;
     switch (actionType) {
-      case ActionType.UNDO:
+      case ActionType.undo:
         command = _undoStack.last;
         break;
-      case ActionType.REDO:
+      case ActionType.redo:
         command = _redoStack.last;
         break;
     }
 
-    ///TODO implement for all tools after implementing unique commands
-    if (command.runtimeType == LineCommand) {
+    // TODO: implement for all tools after implementing unique commands
+    if (command is LineCommand) {
       return ToolData.LINE;
-    } else if (command.runtimeType == SquareShapeCommand) {
+    } else if (command is SquareShapeCommand || command is CircleShapeCommand) {
       return ToolData.SHAPES;
-    } else if (command.runtimeType == CircleShapeCommand) {
-      return ToolData.SHAPES;
-    }
-    else if (command.runtimeType == SprayCommand) {
+    } else if (command is SprayCommand) {
       return ToolData.SPRAY;
     } else {
       return ToolData.BRUSH;
