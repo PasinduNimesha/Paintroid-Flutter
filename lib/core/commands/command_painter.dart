@@ -10,13 +10,13 @@ import 'package:paintroid/core/tools/line_tool/line_tool.dart';
 import 'package:paintroid/core/tools/tool.dart';
 
 class CommandPainter extends CustomPainter {
-  Tool currentTool;
-  CommandManager commandManager;
+  final WidgetRef ref;
+  final Tool currentTool;
+  final CommandManager commandManager;
+
   CommandPainter(this.ref)
       : currentTool = ref.read(toolBoxStateProvider).currentTool,
         commandManager = ref.read(commandManagerProvider);
-
-  final WidgetRef ref;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -28,9 +28,9 @@ class CommandPainter extends CustomPainter {
         _drawGhostPathsAndVertices(canvas, currentTool as LineTool);
         break;
       case ToolType.SHAPES:
-        (currentTool as ShapesTool)
-          ..drawShape(canvas, ref.read(paintProvider))
-          ..drawGuides(canvas);
+        final shapesTool = currentTool as ShapesTool;
+        shapesTool.drawShape(canvas, ref.read(paintProvider));
+        shapesTool.drawGuides(canvas);
         break;
       default:
         commandManager.executeLastCommand(canvas);
