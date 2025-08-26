@@ -1,17 +1,16 @@
 import 'dart:ui';
 
 import 'package:collection/collection.dart';
-
 import 'package:paintroid/core/json_serialization/converter/path_action_converter.dart';
 import 'package:paintroid/core/json_serialization/converter/path_with_action_history_converter.dart';
 
-class PathWithActionHistory  {
+class PathWithActionHistory {
   PathWithActionHistory();
 
-  final path = Path();
+  final Path path = Path();
 
   @PathActionConverter()
-  final actions = <PathAction>[];
+  final List<PathAction> actions = <PathAction>[];
 
   void moveTo(double x, double y) {
     actions.add(MoveToAction(x, y));
@@ -28,21 +27,16 @@ class PathWithActionHistory  {
     path.close();
   }
 
-  Map<String, dynamic> toJson() {
-    return const PathWithActionHistoryConverter().toJson(this);
-  }
+  Map<String, dynamic> toJson() =>
+      const PathWithActionHistoryConverter().toJson(this);
 
-  factory PathWithActionHistory.fromJson(Map<String, dynamic> json) {
-    return const PathWithActionHistoryConverter().fromJson(json);
-  }
+  factory PathWithActionHistory.fromJson(Map<String, dynamic> json) =>
+      const PathWithActionHistoryConverter().fromJson(json);
 
   @override
-  bool operator ==(Object other) {
-    if (other is PathWithActionHistory) {
-      return const ListEquality<PathAction>().equals(actions, other.actions);
-    }
-    return false;
-  }
+  bool operator ==(Object other) =>
+      other is PathWithActionHistory &&
+      const ListEquality<PathAction>().equals(actions, other.actions);
 
   @override
   int get hashCode => const ListEquality<PathAction>().hash(actions);
@@ -59,12 +53,8 @@ class MoveToAction extends PathAction {
   const MoveToAction(this.x, this.y);
 
   @override
-  bool operator ==(Object other) {
-    if (other is MoveToAction) {
-      return x == other.x && y == other.y;
-    }
-    return false;
-  }
+  bool operator ==(Object other) =>
+      other is MoveToAction && x == other.x && y == other.y;
 
   @override
   int get hashCode => Object.hash(x, y);
@@ -77,12 +67,8 @@ class LineToAction extends PathAction {
   const LineToAction(this.x, this.y);
 
   @override
-  bool operator ==(Object other) {
-    if (other is LineToAction) {
-      return x == other.x && y == other.y;
-    }
-    return false;
-  }
+  bool operator ==(Object other) =>
+      other is LineToAction && x == other.x && y == other.y;
 
   @override
   int get hashCode => Object.hash(x, y);
