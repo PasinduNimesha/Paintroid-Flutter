@@ -7,39 +7,36 @@ class GraphicFactory {
 
   Paint createPaint() => Paint();
 
-  static Paint guidePaint = Paint()
+  static final Paint guidePaint = Paint()
     ..color = const Color.fromARGB(121, 55, 55, 55)
     ..style = PaintingStyle.stroke
     ..strokeWidth = 10;
 
-  static Paint anchorPaint = Paint()
+  static final Paint anchorPaint = Paint()
     ..color = const Color.fromARGB(220, 117, 117, 117)
     ..style = PaintingStyle.fill;
 
-  PathWithActionHistory createPathWithActionHistory() =>
-      PathWithActionHistory();
+  PathWithActionHistory createPathWithActionHistory() => PathWithActionHistory();
 
   PictureRecorder createPictureRecorder() => PictureRecorder();
 
   Canvas createCanvasWithRecorder(PictureRecorder recorder) => Canvas(recorder);
 
-  Paint copyPaint(Paint original) {
-    return Paint()
-      ..blendMode = original.blendMode
-      ..color = original.color
-      ..colorFilter = original.colorFilter
-      ..filterQuality = original.filterQuality
-      ..imageFilter = original.imageFilter
-      ..invertColors = original.invertColors
-      ..isAntiAlias = original.isAntiAlias
-      ..maskFilter = original.maskFilter
-      ..shader = original.shader
-      ..strokeCap = original.strokeCap
-      ..strokeJoin = original.strokeJoin
-      ..strokeMiterLimit = original.strokeMiterLimit
-      ..strokeWidth = original.strokeWidth
-      ..style = original.style;
-  }
+  Paint copyPaint(Paint original) => Paint()
+    ..blendMode = original.blendMode
+    ..color = original.color
+    ..colorFilter = original.colorFilter
+    ..filterQuality = original.filterQuality
+    ..imageFilter = original.imageFilter
+    ..invertColors = original.invertColors
+    ..isAntiAlias = original.isAntiAlias
+    ..maskFilter = original.maskFilter
+    ..shader = original.shader
+    ..strokeCap = original.strokeCap
+    ..strokeJoin = original.strokeJoin
+    ..strokeMiterLimit = original.strokeMiterLimit
+    ..strokeWidth = original.strokeWidth
+    ..style = original.style;
 
   static Paint copyPaintWith({
     required Paint original,
@@ -57,21 +54,20 @@ class GraphicFactory {
     double? strokeMiterLimit,
     double? strokeWidth,
     PaintingStyle? style,
-  }) {
-    return Paint()
-      ..blendMode = blendMode ?? original.blendMode
-      ..color = color ?? original.color
-      ..colorFilter = colorFilter ?? original.colorFilter
-      ..filterQuality = filterQuality ?? original.filterQuality
-      ..imageFilter = imageFilter ?? original.imageFilter
-      ..invertColors = invertColors ?? original.invertColors
-      ..isAntiAlias = isAntiAlias ?? original.isAntiAlias
-      ..maskFilter = maskFilter ?? original.maskFilter
-      ..shader = shader ?? original.shader
-      ..strokeCap = strokeCap ?? original.strokeCap
-      ..strokeJoin = strokeJoin ?? original.strokeJoin
-      ..strokeMiterLimit = strokeMiterLimit ?? original.strokeMiterLimit
-      ..strokeWidth = strokeWidth ?? original.strokeWidth
-      ..style = style ?? original.style;
-  }
+  }) =>
+      Paint()
+        ..blendMode = blendMode ?? original.blendMode
+        ..color = color ?? original.color
+        ..colorFilter = colorFilter ?? original.colorFilter
+        ..filterQuality = filterQuality ?? original.filterQuality
+        ..imageFilter = imageFilter ?? original.imageFilter
+        ..invertColors = invertColors ?? original.invertColors
+        ..isAntiAlias = isAntiAlias ?? original.isAntiAlias
+        ..maskFilter = maskFilter ?? original.maskFilter
+        ..shader = shader ?? original.shader
+        ..strokeCap = strokeCap ?? original.strokeCap
+        ..strokeJoin = strokeJoin ?? original.strokeJoin
+        ..strokeMiterLimit = strokeMiterLimit ?? original.strokeMiterLimit
+        ..strokeWidth = strokeWidth ?? original.strokeWidth
+        ..style = style ?? original.style;
 }
